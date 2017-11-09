@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>登陆</title>
+</head>
+<body>
+<div id="test">
+  <h1>短信验证码和登陆测试</h1>
+  <h3>说明: 请修改sms_util.js中ACCOUNT_SID, AUTH_TOKEN, AppID为你注册生成的数据</h3>
+
+  手机号: <input type="text" v-model="phone"><br>
+  验证码: <input type="text" v-model="code">
+  <button @click="sendCode">发送验证码</button><br>
+  <button @click="login">登陆</button>
+
+  <hr>
+  <p>登陆状态: {{status}}</p>
+</div>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/vue/2.4.4/vue.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/axios/0.16.2/axios.js"></script>
+<script type="text/javascript">
+  new Vue({
+    el: '#test',
+    data: {
+      phone: '',
+      code: '',
+      status: '未登陆'
+    },
+    methods: {
+      sendCode() {
+        const url = `/sendcode?phone=${this.phone}`
+        axios.get(url).then(response => {
+          console.log('sendcode result ', response.data)
+        })
+      },
+
+      login() {
+        axios.post('/login', {phone: this.phone, code: this.code}).then(response => {
+          console.log('login result ', response.data)
+          const result = response.data
+          if (result.code == 0) {
+            const user = result.data
+            this.status = `登陆成功: ${user.phone}`
+          } else {
+            this.status = `登陆失败, 请输入正确的手机号和验证码`
+          }
+        })
+      }
+    }
+  })
+</script>
+</body>
+</html>
