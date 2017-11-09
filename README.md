@@ -238,3 +238,6 @@
     输入验证码, 点击登陆 --->页面提示登陆成功
     如果再次输入或输入不正确 --->页面提示登陆失败 
 ![](https://i.imgur.com/4jC3vvC.png)
+
+
+# [vue中mock处理.md](vue中mock处理.md "查看在vue项目中mock")
