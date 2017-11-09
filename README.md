@@ -240,4 +240,4 @@
 ![](https://i.imgur.com/4jC3vvC.png)
 
 
-# [vue中mock处理.md](vue中mock处理.md "查看在vue项目中mock")
+# [查看vue中如何mock实现.md](vue中mock处理.md)
