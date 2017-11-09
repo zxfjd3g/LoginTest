@@ -1,4 +1,6 @@
-## 1. 请求容联发送验证码短信
+## 1. 成为容联平台的开发者
+    不变
+## 2. 请求容联发送验证码短信
     1). 下载依赖包
         不变
     2). 编写请求代码: login/sms_util.js
@@ -22,21 +24,28 @@
 
 ## 4. 在组件中实现短信验证码登陆
     <p>
+      手机号: <input type="text" v-model="phone" placeholder="手机号">
+      验证码: <input type="text" v-model="code" placeholder="验证码">
       <button @click="sendCode">发送验证码</button>
-      <input type="text" v-model="code">
       <button @click="login">登陆</button>
     </p>
     
+    data () {
+      return {
+        phone: '',
+        code: ''
+      }
+    },
     methods: {
       sendCode() {
-        axios.get('/api/sendcode?phone=13716962779')
+        axios.get('/api/sendcode?phone='+this.phone)
           .then(response => {
             console.log('sendCode', response.data)
           })
       },
 
       login () {
-        axios.post('/api/login', {phone: '13716962779', code: this.code})
+        axios.post('/api/login', {phone: this.phone, code: this.code})
           .then(response => {
             console.log('login', response.data)
             const result = response.data
@@ -48,6 +57,10 @@
             }
           })
       }
-    }
+    },
         
-        
+## 5. 运行测试
+    npm start
+    输入一个测试号码, 点击输入验证码 --->手机会收到验证码
+    输入验证码, 点击登陆 --->提示登陆成功
+    如果再次输入或输入不正确 --->提示登陆失败  
