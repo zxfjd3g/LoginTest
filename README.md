@@ -183,7 +183,7 @@
         var loginServer = require('../login/login_server')
         loginServer(router)
         
-## 4. 编写登陆页面: public/login.html
+## 4. 编写登陆页面: public/login.html (也可以是前台界面)
     <div id="test">
       <h1>短信验证码和登陆测试</h1>
       <h3>说明: 请修改sms_util.js中ACCOUNT_SID, AUTH_TOKEN, AppID为你注册生成的数据</h3>
